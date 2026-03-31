@@ -1,0 +1,201 @@
+.home-login-checkout {
+  margin-top: 50px;
+  display: flex;
+  gap: 20px;
+  margin-left: 30px;
+}
+
+.home-login-checkout a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: var(--transition-hover);
+}
+
+.home-login-checkout a:hover {
+  color: var(--color-secondary);
+}
+
+.home-login-checkout img {
+  width: 20px;
+  height: auto;
+}
+
+.login {
+  margin-top: 50px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 3.25rem;
+}
+
+.login-section {
+  margin-top: 30px;
+  width: 50%;
+  margin-left: 25%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid var(--text-secondary);
+  background-color: var(--color-light);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 50px !important;
+}
+
+.login-section form {
+  margin: 40px;
+}
+
+.login-section input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--color-grey);
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.login-button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.login-button:hover {
+  background-color: var(--color-white);
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+}
+
+.checkbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.optional {
+  margin-top: 15px;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.optional input {
+  display: block;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.remember-me label {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+}
+.remember-me input[type="checkbox"] {
+  width: 20px !important;
+  height: 20px !important;
+  accent-color: var(--color-secondary);
+}
+
+.optional p {
+  display: inline-block;
+  margin-top: 15px;
+  color: var(--color-grey);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: var(--transition-hover);
+}
+
+.optional p:hover {
+  color: var(--color-secondary);
+}
+
+.admin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.create-account {
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.signup {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: var(--transition-hover);
+  margin-top: 20px;
+}
+
+.signup:hover {
+  color: var(--color-white);
+}
+
+.admin-checked {
+  margin-top: 30px;
+}
+
+/* ================ mobile and small device ================== */
+@media screen and (min-width: 0) and (max-width: 768px) {
+  .login-section {
+    width: 95vw !important;
+    margin-left: 2.5% !important;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  .login-form {
+    width: 95% !important;
+    margin: 0 auto;
+    margin-left: -1% !important;
+  }
+
+  .remember-forget,
+  .admin {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* =================== FOR TABLET AND MEDIUM DEVICES =================== */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .login-section {
+    width: 70%;
+    margin-left: 15%;
+  }
+
+  .login {
+    margin-top: 50px;
+  }
+
+  .home-login-checkout {
+    margin-top: 150px !important;
+  }
+
+  .footer-section {
+    height: 80vh;
+  }
+}
