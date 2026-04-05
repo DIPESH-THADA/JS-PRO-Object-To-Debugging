@@ -824,7 +824,7 @@ nav .header__nav--icons ul {
   background-color: var(--color-light);
   width: 100%;
   min-height: 260px;
-  max-height: auto;
+  max-height: stretch;
   box-shadow: var(--shadow-medium);
   border-radius: 15px;
   padding-bottom: 15px;
@@ -863,11 +863,9 @@ nav .header__nav--icons ul {
 }
 
 .cart-btn {
-  margin-left: 15px;
-  margin-top: 15px;
-  margin: 0 auto;
-  width: calc(100% - 30px);
+  margin: 0 auto 0 2.5%;
   padding: 10px 15px;
+  width: 95%;
   background-color: var(--color-white);
   box-shadow: var(--shadow-light);
   border-radius: 10px;
@@ -904,7 +902,7 @@ nav .header__nav--icons ul {
 }
 
 .heart:hover {
-  background-color: var(--light-white);
+  background-color: var(--color-accent);
 }
 
 /* ============ BACK TO TOP CONTENT ========== */

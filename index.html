@@ -31,7 +31,7 @@
     <header>
         <section class="header-section d-flex align-items-center justify-content-between px-3 py-3">
             <div class="header__logo">
-                <img src="./assets/icons/logo2.JPG" alt="D FASHION HUB LOGO" width="70px" height="auto" class="rounded">
+                <img src="./assets/icons/logo2.JPG" alt="D FASHION HUB LOGO" width="1024" height="1024" class="rounded">
             </div>
             <button class="hamburger-btn" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
@@ -46,8 +46,8 @@
                 </ul>
 
                 <form class="search-bar ms-auto" id="search-form">
-                    <input type="text" placeholder="Search products..." class="form-control form-control-sm search"
-                        id="search-input" />
+                    <label for="search-input"></label><input type="text" placeholder="Search products..." class="form-control form-control-sm search"
+                                                             id="search-input" />
                 </form>
 
                 <ul class="header__nav--icons d-flex gap-3 list-unstyled mb-0">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
     </section>
 
     <div class="home-login-checkout d-flex gap-3 ms-4 align-items-center flex-wrap">
@@ -133,7 +133,7 @@
 
                 <h3 class="filter">Filters</h3>
                 <div class="price1">
-                    <select id="sort-price" class="form-select form-select-sm" style="width: auto;">
+                    <label for="sort-price"></label><select id="sort-price" class="form-select form-select-sm" style="width: auto;">
                         <option value="all">All Prices</option>
                         <option value="low">Under 300</option>
                         <option value="medium">300 - 1000</option>
@@ -142,8 +142,7 @@
                 </div>
 
                 <div class="categories">
-                    <label for="categories" class="form-label fw-500">Categories</label>
-                    <select id="sort-categories" class="form-select form-select-sm" style="width: auto;">
+                    <label for="sort-categories">Categories</label><select id="sort-categories" class="form-select form-select-sm" style="width: auto;">
                         <option value="all-product">All Product</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -179,7 +178,7 @@
 
                 <div class="brands">
                     <div class="price1">
-                        <span>Categiries</span>
+                        <span>Categories</span>
                         <img src="./assets/icons/icon-set/down.png" alt="down-arrow" width="18px">
                     </div>
                     <div class="zara">
@@ -344,6 +343,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="./JS-file/main.js"></script>
     <script type="module" src="./JS-file/ass01.js"></script>
+    <script src="./JS-file/Ass02.js"></script>
 </body>
 
 </html>

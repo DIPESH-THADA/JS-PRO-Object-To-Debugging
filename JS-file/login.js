@@ -1,33 +1,59 @@
 "use strict";
-// =============== 5. LOGIN FUNCTION (login.html) =================
 
-function login(event) {
-  event.preventDefault(); // Prevent the default form submission
+// =================================================================
+//  login.js
+//  The plain function approach has been replaced by classes.
+// =================================================================
 
-  let emailField = document.getElementById("username");
-  let passwordField = document.getElementById("password");
-  let validUsers = {
-    "admin@example.com": "admin123",
-    "user@example.com": "user123",
-  };
+class Authenticator {
+  authenticate(email, password) {
+    throw new Error("Method 'authenticate()' must be implemented by subclass.");
+  }
+}
+//-----------------------------------------------------------------
+class LocalAuthenticator extends Authenticator {
+  constructor() {
+    super();
+    this.validUsers = {
+      "admin@example.com": "admin123",
+      "user@example.com": "user123",
+    };
+  }
+
+  authenticate(email, password) {
+    return this.validUsers[email] === password;
+  }
+}
+
+class FormValidator {
+  validate(email, password) {
+    return email.trim() !== "" && password.trim() !== "";
+  }
+}
+
+// -----------------------------------------------------------------
+//  login(event, authenticator, validator)
+// -----------------------------------------------------------------
+function login(event, authenticator, validator) {
+  event.preventDefault();
+
+  const emailField = document.getElementById("username");
+  const passwordField = document.getElementById("password");
 
   if (!emailField || !passwordField) {
     alert("Form fields not found.");
     return false;
   }
 
-  // Remove leading and trailing spaces from both entries using trim()
-  let email = emailField.value.trim();
-  let password = passwordField.value.trim();
+  const email = emailField.value.trim();
+  const password = passwordField.value.trim();
 
-  // Check if fields are empty
-  if (email === "" || password === "") {
+  if (!validator.validate(email, password)) {
     alert("Please enter both email and password.");
     return false;
   }
 
-  // Case-sensitive comparison against the predefined set of key-value elements
-  if (validUsers[email] !== undefined && validUsers[email] === password) {
+  if (authenticator.authenticate(email, password)) {
     alert("Login successful! Welcome back, " + email + ".");
     return true;
   } else {
@@ -36,8 +62,20 @@ function login(event) {
   }
 }
 
-// Connect Admin Check Button
-let adminCheckBtn = document.getElementById("admin-check-btn");
+const myAuthenticator = new LocalAuthenticator();
+const myValidator = new FormValidator();
+
+const loginForm = document.querySelector(".login-section form");
+if (loginForm) {
+  loginForm.addEventListener("submit", function (event) {
+    login(event, myAuthenticator, myValidator);
+  });
+}
+
+// -----------------------------------------------------------------
+//  Admin password check
+// -----------------------------------------------------------------
+const adminCheckBtn = document.getElementById("admin-check-btn");
 if (adminCheckBtn) {
   adminCheckBtn.addEventListener("click", function () {
     checkPassword();
@@ -53,37 +91,63 @@ function checkPassword() {
     const userInput = prompt("Enter admin password:");
 
     if (userInput === CORRECT_PASSWORD || userInput === USER_NAME) {
-      alert("✅ Welcome back, admin!");
-      break; // stop after success
+      alert("Welcome back, admin!");
+      break;
     } else {
       if (attempt === MAX_ATTEMPTS) {
-        alert("🚫 Account temporarily locked after 3 failed attempts.");
+        alert("Account temporarily locked after 3 failed attempts.");
       } else {
         alert(
-          `❌ Incorrect password. You have ${MAX_ATTEMPTS - attempt} attempt(s) left.`,
+          "Incorrect password. You have " +
+            (MAX_ATTEMPTS - attempt) +
+            " attempt(s) left.",
         );
       }
     }
   }
 }
 
-// Connect login form
-let loginForm = document.querySelector(".login-section form");
-if (loginForm) {
-  loginForm.addEventListener("submit", function (event) {
-    login(event);
-  });
+// -----------------------------------------------------------------
+//  Console tests
+// -----------------------------------------------------------------
+console.log("=== LOGIN TESTS ===");
+
+// Test LocalAuthenticator directly
+const testAuth = new LocalAuthenticator();
+console.log(
+  "NORMAL – valid credentials:",
+  testAuth.authenticate("admin@example.com", "admin123"),
+);
+console.log(
+  "NORMAL – valid credentials:",
+  testAuth.authenticate("user@example.com", "user123"),
+);
+console.log(
+  "  – wrong password:",
+  testAuth.authenticate("admin@example.com", "wrongpass"),
+);
+console.log(
+  "  – unknown email:",
+  testAuth.authenticate("unknown@example.com", "admin123"),
+);
+
+// Test FormValidator directly
+const testValidator = new FormValidator();
+console.log(
+  "NORMAL – both fields filled:",
+  testValidator.validate("test@example.com", "mypass"),
+);
+console.log("  – empty email:", testValidator.validate("", "mypass"));
+console.log(
+  "  – empty password:",
+  testValidator.validate("test@example.com", ""),
+);
+console.log("  – both empty:", testValidator.validate("", ""));
+
+// Polymorphism demo – base class throws, subclass works
+const baseAuth = new Authenticator();
+try {
+  baseAuth.authenticate("x", "y");
+} catch (e) {
+  console.log(e.message);
 }
-
-// ── 3. USER OBJECT ────────────────────────────
-const user = {
-  firstName: "John",
-  lastName: "Doe",
-  email: "john.doe@example.com",
-  address: "123 Main Street",
-  zip: "300001",
-};
-
-// --- user object ---
-console.log("\n=== USER ===");
-console.log(user);

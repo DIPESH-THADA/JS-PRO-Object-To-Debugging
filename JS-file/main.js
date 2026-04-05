@@ -1,6 +1,6 @@
 "use strict";
 
-import { allProducts } from "./data.js";
+import {allProducts} from "./data.js";
 
 // =================================================================
 //  GLOBAL CONSTANTS
@@ -96,11 +96,10 @@ function updateCartBadge() {
   const cartBadge = document.querySelector(".cart-badge");
   if (!cartBadge) return;
   const cart = getCart();
-  const totalQuantity = cart.reduce(
-    (sum, item) => sum + Number(item.quantity || 0),
-    0,
+  cartBadge.textContent = cart.reduce(
+      (sum, item) => sum + Number(item.quantity || 0),
+      0,
   );
-  cartBadge.textContent = totalQuantity;
 }
 
 // =================================================================
