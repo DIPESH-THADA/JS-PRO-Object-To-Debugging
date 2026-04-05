@@ -103,7 +103,7 @@ body.dark-mode .site-footer span {
 }
 
 .theme-toggle-btn i {
-  font-size: 1.075rem !important;
+  font-size: 1.175rem !important;
 }
 
 .theme-toggle-btn:hover {
@@ -865,6 +865,7 @@ nav .header__nav--icons ul {
 .cart-btn {
   margin-left: 15px;
   margin-top: 15px;
+  margin: 0 auto;
   width: calc(100% - 30px);
   padding: 10px 15px;
   background-color: var(--color-white);
