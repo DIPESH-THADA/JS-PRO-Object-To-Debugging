@@ -109,7 +109,7 @@ function renderFavorites() {
 
   container.innerHTML = `
     <div class="fav-count mb-3">
-      <span>${favs.length} item${favs.length > 1 ? "s" : ""} saved</span>
+      <span class="badge-text">${favs.length} item${favs.length > 1 ? "s" : ""} saved</span>
     </div>
     <div class="fav-grid">
       ${favs
@@ -199,18 +199,17 @@ document.addEventListener("DOMContentLoaded", function () {
   renderFavorites();
   updateCartBadge();
   updateFavBadge();
+  //  BACK TO TOP
+  // =================================================================
+  const backToTopBtn = document.querySelector(".back-to-top");
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 
   // Current year in footer
   const yearEl = document.querySelector(".year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
-
-//  BACK TO TOP
-// =================================================================
-const backToTopBtn = document.querySelector(".back-to-top");
-if (backToTopBtn) {
-  backToTopBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-}

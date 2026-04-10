@@ -90,7 +90,7 @@ function checkPassword() {
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     const userInput = prompt("Enter admin password:");
 
-    if (userInput === CORRECT_PASSWORD || userInput === USER_NAME) {
+    if (userInput === CORRECT_PASSWORD && USER_NAME === "admin") {
       alert("Welcome back, admin!");
       break;
     } else {

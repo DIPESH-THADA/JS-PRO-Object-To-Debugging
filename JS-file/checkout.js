@@ -1,3 +1,6 @@
+import { calculateVAT } from "./data.js";
+import { allProducts } from "./data.js";
+
 // ================= 1. GLOBAL letIABLES & CONSTANTS =====================
 
 // Product 1 constants
@@ -18,8 +21,6 @@
 // Create an allProducts associative string with:
 // − the name, price and quantity of all the products in your e-commerce store (enough to
 // have up to 10 products)
-
-const VAT_RATE = 0.19; // 19% VAT always available in checkout
 
 // const allProducts = {
 //   "Jens Decathlons Jacket": {
@@ -240,8 +241,8 @@ function calculateOrderSummary() {
     subtotal += Number(item.price || 0) * Number(item.quantity || 1);
   });
 
-  const shippingCost = cart.length > 0 ? 5.99 : 0;
-  const tax = subtotal * VAT_RATE;
+  const shippingCost = cart.length > 0 ? (subtotal >= 500 ? 0 : 30) : 0;
+  const tax = calculateVAT(subtotal) + calculateVAT(shippingCost * 0.15);
   const total = subtotal + shippingCost + tax;
 
   const subtotalEl = document.querySelector(".subtotal");
@@ -262,7 +263,7 @@ const VALID_COUPONS = [
   "SAVE10",
   "SAVE15",
   "FREESHIP",
-  "CHRISRMAS20",
+  "CHRISTMAS20",
   "NEWYEAR25",
   "WINTEROFFER",
   "SUMMERSALE30",
@@ -313,7 +314,7 @@ function validateAndNotify() {
         "Coupon applied successfully! You get free shipping on your order.",
       );
       break;
-    case "CHRISRMAS20":
+    case "CHRISTMAS20":
       alert("Coupon applied successfully! You saved 20% on your order.");
       break;
     case "NEWYEAR25":
@@ -339,6 +340,11 @@ function validateAndNotify() {
   }
   // clear input after validation
   promoInput.value = "";
+}
+
+const applyBtn = document.getElementById("apply-btn");
+if (applyBtn) {
+  applyBtn.addEventListener("click", validateAndNotify);
 }
 
 // =============== CHECKOUT FORM VALIDATION (checkout.html) =================

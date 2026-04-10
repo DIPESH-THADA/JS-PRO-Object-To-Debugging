@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "jasmine": "^6.1.0",
+    "jsdom": "^27.0.1",
+    "xmldom": "^0.6.0"
+  },
+  "scripts": {
+    "test": "jasmine"
+  }
+}

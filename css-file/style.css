@@ -49,20 +49,18 @@ body.dark-mode .payment-form {
   color: var(--color-text-dark);
 }
 
-body.dark-mode .items-one span,
-button,
-input[type="number"] {
+body.dark-mode .items-one span {
   color: var(--color-text-muted-dark);
 }
 
-body.dark-mode .order-summary span,
-b {
+body.dark-mode .order-summary span {
+  color: var(--color-text-muted-dark);
+}
+body.dark-mode b {
   color: var(--color-text-muted-dark);
 }
 
-body.dark-mode .section-aside h3,
-span:not(.star-rating),
-label {
+body.dark-mode .section-aside h3 {
   color: var(--color-primary);
 }
 
@@ -268,8 +266,8 @@ header .header__logo {
   position: absolute;
   top: -8px;
   right: -10px;
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   padding: 0 6px;
   background: var(--color-accent);
   color: var(--color-white);
@@ -280,6 +278,8 @@ header .header__logo {
   border-radius: 50%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   pointer-events: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-bar input {

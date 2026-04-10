@@ -358,3 +358,9 @@ export const allProducts = [
     rating: 4.8,
   },
 ];
+
+const VAT_RATE = 0.15;
+
+export function calculateVAT(price) {
+  return price * VAT_RATE;
+}

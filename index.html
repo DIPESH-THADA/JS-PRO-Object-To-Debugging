@@ -46,8 +46,8 @@
                 </ul>
 
                 <form class="search-bar ms-auto" id="search-form">
-                    <label for="search-input"></label><input type="text" placeholder="Search products..." class="form-control form-control-sm search"
-                                                             id="search-input" />
+                    <label for="search-input"></label><input type="text" placeholder="Search products..."
+                        class="form-control form-control-sm search" id="search-input" />
                 </form>
 
                 <ul class="header__nav--icons d-flex gap-3 list-unstyled mb-0">
@@ -63,8 +63,11 @@
                     <li><a href="./login.html" class="text-decoration-none"><i
                                 class="fa-regular fa-circle-user fs-5"></i></a></li>
 
-                    <li><a href="./favorites.html" class="text-decoration-none"><i
-                                class="fa-solid fa-heart fs-5"></i></a></li>
+                    <a href="./favorites.html" class="text-decoration-none position-relative">
+                        <i class="fa-solid fa-heart fs-5"></i>
+                        <span class="fav-badge badge bg-danger cart-badge"
+                            style="position: absolute; top: -5px; right: -8px; color: white;">0</span>
+                    </a>
                 </ul>
             </nav>
         </section>
@@ -133,7 +136,8 @@
 
                 <h3 class="filter">Filters</h3>
                 <div class="price1">
-                    <label for="sort-price"></label><select id="sort-price" class="form-select form-select-sm" style="width: auto;">
+                    <label for="sort-price"></label><select id="sort-price" class="form-select form-select-sm"
+                        style="width: auto;">
                         <option value="all">All Prices</option>
                         <option value="low">Under 300</option>
                         <option value="medium">300 - 1000</option>
@@ -142,7 +146,8 @@
                 </div>
 
                 <div class="categories">
-                    <label for="sort-categories">Categories</label><select id="sort-categories" class="form-select form-select-sm" style="width: auto;">
+                    <label for="sort-categories">Categories</label><select id="sort-categories"
+                        class="form-select form-select-sm" style="width: auto;">
                         <option value="all-product">All Product</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>

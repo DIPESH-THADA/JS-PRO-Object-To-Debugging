@@ -1,11 +1,11 @@
 "use strict";
 
-import {allProducts} from "./data.js";
+import { allProducts } from "./data.js";
+import { calculateVAT } from "./data.js";
 
 // =================================================================
 //  GLOBAL CONSTANTS
 // =================================================================
-const VAT_RATE = 0.19;
 const CART_KEY = "dfashion_cart";
 const THEME_KEY = "dfashion_theme";
 
@@ -97,8 +97,8 @@ function updateCartBadge() {
   if (!cartBadge) return;
   const cart = getCart();
   cartBadge.textContent = cart.reduce(
-      (sum, item) => sum + Number(item.quantity || 0),
-      0,
+    (sum, item) => sum + Number(item.quantity || 0),
+    0,
   );
 }
 
@@ -147,7 +147,7 @@ const renderItems = function (items) {
   items.forEach(function (item, index) {
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("product-items");
-    const priceWithVAT = (item.price * (1 + VAT_RATE)).toFixed(2);
+    const priceWithVAT = (  item.price + calculateVAT(item.price)).toFixed(2);
     itemDiv.innerHTML =
       '<img class="product-img" src="' +
       item.image +
@@ -328,7 +328,7 @@ function calculateTotalStockValue() {
   );
   console.log("Total quantity in stock: " + totalQuantity);
   console.log(
-    totalValue > 10000 ? "Stock value is high." : "Stock value is manageable.",
+    totalValue > 100000 ? "Stock value is high." : "Stock value is manageable.",
   );
 }
 calculateTotalStockValue();
