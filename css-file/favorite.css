@@ -1,0 +1,89 @@
+/* =================================================================
+   FAVORITES PAGE STYLES
+================================================================= */
+
+/* Full-width grid on favorites page — no sidebar so use full width */
+.favorites-section {
+  width: 95%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  width: 100%;
+}
+
+/* fav-actions sits below the card content */
+.fav-item .fav-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+  margin-top: 5px;
+}
+
+.fav-item .fav-actions .cart-btn,
+.fav-item .fav-actions .remove-fav {
+  width: 100%;
+}
+
+/* Empty state */
+.empty-favorites {
+  width: 100%;
+  padding: 60px 20px;
+}
+
+.remove-fav {
+  background-color: #fff;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.fav-badge {
+  background-color: var(--color-accent);
+  color: #fff;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+}
+
+.badge-text {
+  font-size: 1.075rem;
+}
+
+/* Tablet: 3 columns */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .fav-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Small tablet / large mobile: 2 columns */
+@media screen and (max-width: 767px) {
+  .fav-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .favorites-section {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/* Mobile: 1 column */
+@media screen and (max-width: 480px) {
+  .fav-grid {
+    grid-template-columns: 1fr;
+  }
+}

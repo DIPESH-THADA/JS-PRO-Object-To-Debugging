@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ============= Bootstrap CDN ============ -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- ============= icons Ccdn ============ -->
+    <script src="https://kit.fontawesome.com/e7ef4b81f7.js" crossorigin="anonymous"></script>
+
+    <!-- ============ FONT LINK ============= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Emblema+One&family=Karla:ital,wght@0,200..800;1,200..800&family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600;700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- ========= LINK CSS FILE ========== -->
+    <link rel="stylesheet" href="./css-file/style.css">
+    <script type="module" src="./JS-file/data.js"></script>
+
+    <!-- ========= LOGO ICON ========= -->
+    <link rel="shortcut icon" type="image/png" href="./assets/icons/logo2.JPG" />
+    <title>D FASHION HUB</title>
+</head>
+
+<body>
+    <!-- ============= HEADER =============== -->
+    <header>
+        <section class="header-section d-flex align-items-center justify-content-between px-3 py-3">
+            <div class="header__logo">
+                <img src="./assets/icons/logo2.JPG" alt="D FASHION HUB LOGO" width="1024" height="1024" class="rounded">
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="header__nav align-items-center gap-4 flex-grow-1 ms-4">
+                <ul class="menu d-flex gap-3 list-unstyled mb-0">
+                    <li><a href="#" class="text-decoration-none">Home</a></li>
+                    <li><a href="#" class="text-decoration-none">Shop</a></li>
+                    <li><a href="#" class="text-decoration-none">About Us</a></li>
+                    <li><a href="#" class="text-decoration-none">Contact</a></li>
+                    <li><a href="#" class="text-decoration-none"><span>Sale!</span></a></li>
+                </ul>
+
+                <form class="search-bar ms-auto" id="search-form">
+                    <label for="search-input"></label><input type="text" placeholder="Search products..."
+                        class="form-control form-control-sm search" id="search-input" />
+                </form>
+
+                <ul class="header__nav--icons d-flex gap-3 list-unstyled mb-0">
+                    <li>
+                        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                            <i id="theme-icon" class="fa-solid fa-moon"></i>
+                        </button>
+                    </li>
+                    <li><a href="./checkout.html" class="trolley-a position-relative"><i
+                                class="fa-solid fa-cart-arrow-down fs-5"></i><span class="cart-badge badge bg-danger"
+                                style="position: absolute; top: -5px; right: -8px; color: white;">0</span></a>
+                    </li>
+                    <li><a href="./login.html" class="text-decoration-none"><i
+                                class="fa-regular fa-circle-user fs-5"></i></a></li>
+
+                    <a href="./favorites.html" class="text-decoration-none position-relative">
+                        <i class="fa-solid fa-heart fs-5"></i>
+                        <span class="fav-badge badge bg-danger cart-badge"
+                            style="position: absolute; top: -5px; right: -8px; color: white;">0</span>
+                    </a>
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title display-4 fw-bold">Discover the essence of timeless elegance</h1>
+            <p class="lead">Stop in to a world where fashion meets art. Experience unparalleled style and sophisticated
+                style with
+                our exclusive collection. Discover your signature look today.
+            </p>
+        </div>
+
+        <div class="hero-button d-flex gap-3">
+            <button class="shop btn btn-primary btn-lg">shop the collection</button>
+            <button class="discover btn btn-outline-primary btn-lg">discover more</button>
+        </div>
+    </section>
+
+    <section class="best-sale-product">
+        <div class="container-sales">
+            <div class="best-sale-title">
+                <h1>our best sales product !</h1>
+                <p>Here is our best sales product this year we have an amazing offer for you come and grab this offer!
+                </p>
+            </div>
+
+            <div class="title">
+                <h3>Air Max</h3>
+                <div class="rating">
+                    <!-- <img src="./assets/images/product-images/rating.png" alt="rating"> -->
+                    <span class="star-rating" data-rating="4.5"></span>
+                </div>
+            </div>
+            <div class="product-details">
+                <div class="product-image">
+                    <div class="top">
+                        <img src="./assets/images/product-images/air-max.webp" alt="air-max">
+                        <img src="./assets/images/product-images/air-max4.webp" alt="air-max4">
+                    </div>
+                    <div class="down">
+                        <img src="./assets/images/product-images/air-max2.webp" alt="air-max2">
+                        <img src="./assets/images/product-images/air-max3.webp" alt="air-max3">
+                        <img src="./assets/images/product-images/air-max-5.webp" alt="air-max-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="home-login-checkout d-flex gap-3 ms-4 align-items-center flex-wrap">
+        <span><a href="./index.html" class="btn btn-sm btn-outline-secondary">View All <i
+                    class="fa-solid fa-angle-right"></i></a></span>
+        <span><a href="./login.html" class="btn btn-sm btn-outline-secondary">login <i
+                    class="fa-solid fa-arrow-right"></i></a></span>
+        <span class="checkout-span"><a href="./checkout.html"
+                class="btn btn-sm btn-primary checkout">Checkout</a></span>
+    </div>
+
+    <h1 class="view-all-products">View All Product</h1>
+
+    <main class="main-content container-fluid">
+        <section class="section-aside row g-3">
+            <aside class="col-lg-3 col-md-4">
+
+                <h3 class="filter">Filters</h3>
+                <div class="price1">
+                    <label for="sort-price"></label><select id="sort-price" class="form-select form-select-sm"
+                        style="width: auto;">
+                        <option value="all">All Prices</option>
+                        <option value="low">Under 300</option>
+                        <option value="medium">300 - 1000</option>
+                        <option value="high">Over 1000</option>
+                    </select>
+                </div>
+
+                <div class="categories">
+                    <label for="sort-categories">Categories</label><select id="sort-categories"
+                        class="form-select form-select-sm" style="width: auto;">
+                        <option value="all-product">All Product</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="unisex">Unisex</option>
+                    </select>
+                </div>
+                <div class="brands">
+                    <div class="price1">
+                        <span>Brand</span>
+                        <img src="./assets/icons/icon-set/down.png" alt="down-arrow" width="18px">
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>ZARA</span>
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>H&M</span>
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>BERSKHA</span>
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>KOTON</span>
+                    </div>
+                </div>
+
+                <div class="brands">
+                    <div class="price1">
+                        <span>Categories</span>
+                        <img src="./assets/icons/icon-set/down.png" alt="down-arrow" width="18px">
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>Pants</span>
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>T-shirts</span>
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>Jackets</span>
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>Skirts</span>
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>All Items</span>
+                    </div>
+                </div>
+
+                <div class="brands">
+                    <div class="price1">
+                        <span>Brand</span>
+                        <img src="./assets/icons/icon-set/down.png" alt="down-arrow" width="18px">
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>ZARA</span>
+                    </div>
+                    <div class="zara">
+                        <div class="input">
+                            <input type="checkbox">
+                        </div><span>H&M</span>
+                    </div>
+                </div>
+
+                <div class="price1">
+                    <span>Color</span>
+                    <img src="./assets/icons/icon-set/right.png" alt="right-arrow" width="18px">
+                </div>
+
+                <div class="price1">
+                    <span>Other</span>
+                    <img src="./assets/icons/icon-set/right.png" alt="right-arrow" width="18px">
+                </div>
+            </aside>
+
+            <button class="apply-btn">Apply Filter</button>
+        </section>
+
+        <section class="product-section col-lg-9 col-md-8">
+            <div class="product-items">
+                <img class="product-img" src="./assets/images/ladies-jackets.webp" alt="ladies jacket">
+                <div class="details">
+                    <span class="product-name">ladies jacket</span>
+                    <div class="price_favorite">
+                        <span class="prices">300 RON
+                            <small>(incl. VAT: RON 357.00)</small>
+                        </span>
+                        <button class="heart">
+                            <img src="./assets/icons/icon-set/heart.png" alt="add to favorite">
+                        </button>
+                    </div>
+                    <span class="star-rating" data-rating="4.5"></span>
+                </div>
+                <button class="cart-btn" data-product-index="0" data-product-name="ladies jacket"
+                    data-product-price="300">
+                    Add To Cart
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================ FOOTER SECTION ================ -->
+    <footer class="site-footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Shop</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Dresses</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Jackets</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Skirts</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Shoes &amp; Bags</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Gift Cards</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Sales &amp; Offers</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Information</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>About Us</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Terms &amp; Conditions</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Delivery &amp; Returns</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Contact Us</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>FAQs</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Order Tracking</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Payment Methods</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Newsletter</h5>
+                    <p class="footer-text">Subscribe to get updates on new arrivals and special offers.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control footer-input" placeholder="Your email"
+                            aria-label="Your email">
+                        <button class="btn footer-subscribe-btn" type="button"><i
+                                class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                    <div class="d-flex gap-3 fs-5">
+                        <a href="https://facebook.com" class="footer-social-icon"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://twitter.com" class="footer-social-icon"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://instagram.com" class="footer-social-icon"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://tiktok.com" class="footer-social-icon"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider mt-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <span class="footer-copyright">&copy; <span class="year">2025</span> D Fashion Hub. All rights
+                    reserved.</span>
+                <button class="btn btn-sm mt-2 mt-md-0 back-to-top">
+                    <i class="fa-solid fa-arrow-up ms-1"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./JS-file/main.js"></script>
+    <script type="module" src="./JS-file/ass01.js"></script>
+    <script src="./JS-file/Ass02.js"></script>
+</body>
+
+</html>
