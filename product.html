@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e7ef4b81f7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css-file/style.css">
+    <link rel="stylesheet" href="./css-file/product.css">
+    <link rel="shortcut icon" type="image/png" href="./assets/icons/logo-icon.png" />
+    <title>Product Details – D Fashion Hub</title>
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <section class="header-section d-flex align-items-center justify-content-between px-3 py-3">
+            <div class="header__logo">
+                <img src="./assets/icons/logo-icon.png" alt="D FASHION HUB LOGO" class="rounded">
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="header__nav align-items-center gap-4 flex-grow-1 ms-4">
+                <ul class="menu d-flex gap-3 list-unstyled mb-0">
+                    <li><a href="./index.html" class="text-decoration-none">Home</a></li>
+                    <li><a href="shop.html" class="text-decoration-none">Shop</a></li>
+                    <li><a href="#" class="text-decoration-none">About Us</a></li>
+                    <li><a href="#" class="text-decoration-none">Contact</a></li>
+                    <li><a href="#" class="text-decoration-none"><span>Sale!</span></a></li>
+                </ul>
+                <form class="search-bar ms-auto" id="search-form">
+                    <label for="search-input"></label>
+                    <input type="text" placeholder="Search products..." class="form-control form-control-sm search"
+                        id="search-input" />
+                </form>
+                <ul class="header__nav--icons d-flex gap-3 list-unstyled mb-0">
+                    <li>
+                        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                            <i id="theme-icon" class="fa-solid fa-moon"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="./checkout.html" class="trolley-a position-relative">
+                            <i class="fa-solid fa-cart-arrow-down fs-5"></i>
+                            <span class="cart-badge badge bg-danger"
+                                style="position:absolute;top:-5px;right:-8px;color:white;">0</span>
+                        </a>
+                    </li>
+                    <li><a href="./login.html" class="text-decoration-none"><i
+                                class="fa-regular fa-circle-user fs-5"></i></a></li>
+                    <li>
+                        <a href="./favorites.html" class="text-decoration-none position-relative">
+                            <i class="fa-solid fa-heart fs-5"></i>
+                            <span class="fav-badge badge bg-danger cart-badge"
+                                style="position:absolute;top:-5px;right:-8px;color:white;">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <nav class="pd-breadcrumb" aria-label="breadcrumb">
+        <a href="./index.html">Home</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <a href="./index.html">Shop</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <span id="pd-breadcrumb-name">Product</span>
+    </nav>
+
+    <!-- PRODUCT DETAILS MAIN -->
+    <main class="pd-main container-fluid">
+        <div class="pd-layout">
+
+            <!-- LEFT: thumbnail gallery -->
+            <div class="pd-thumbs" id="pd-thumbs">
+                <!-- thumbnails injected by JS -->
+            </div>
+
+            <!-- CENTRE: main image -->
+            <div class="pd-image-wrap">
+                <img id="pd-main-image" src="" alt="Product image" class="pd-main-img" />
+            </div>
+
+            <!-- RIGHT: product info -->
+            <div class="pd-info">
+
+                <h1 class="pd-title" id="pd-name">Loading...</h1>
+
+                <!-- Rating row -->
+                <div class="pd-rating-row">
+                    <span class="star-rating pd-stars" id="pd-stars" style="--rating:0;"></span>
+                    <span class="pd-reviews" id="pd-reviews">0 reviews</span>
+                    <span class="pd-divider">|</span>
+                    <a href="#pd-review-form" class="pd-write-review">Write your review</a>
+                </div>
+
+                <!-- Price -->
+                <div class="pd-price-block">
+                    <span class="pd-price" id="pd-price">RON 0.00</span>
+                    <span class="pd-vat" id="pd-vat">(incl. VAT: RON 0.00)</span>
+                </div>
+
+                <!-- Stock -->
+                <div class="pd-stock-row">
+                    <i class="fa-solid fa-layer-group pd-stock-icon"></i>
+                    <span id="pd-stock-qty">—</span>
+                    <span class="pd-stock-divider">|</span>
+                    <span class="pd-availability" id="pd-availability">In Stock</span>
+                </div>
+
+                <!-- Description -->
+                <p class="pd-description" id="pd-description">—</p>
+
+                <!-- Color selector -->
+                <div class="pd-option-group">
+                    <span class="pd-option-label">SELECT COLOR</span>
+                    <div class="pd-colors" id="pd-colors">
+                        <button class="pd-color-btn selected" style="background:#f4a7b9;" data-color="Pink"
+                            title="Pink"></button>
+                        <button class="pd-color-btn" style="background:#f59e0b;" data-color="Orange"
+                            title="Orange"></button>
+                        <button class="pd-color-btn" style="background:#fef3c7;" data-color="Cream"
+                            title="Cream"></button>
+                        <button class="pd-color-btn" style="background:#d1fae5;" data-color="Mint"
+                            title="Mint"></button>
+                    </div>
+                </div>
+
+                <!-- Size selector -->
+                <div class="pd-option-group">
+                    <span class="pd-option-label">SELECT SIZE</span>
+                    <div class="pd-sizes" id="pd-sizes">
+                        <button class="pd-size-btn selected" data-size="S">S</button>
+                        <button class="pd-size-btn" data-size="M">M</button>
+                        <button class="pd-size-btn" data-size="L">L</button>
+                        <button class="pd-size-btn" data-size="XL">XL</button>
+                        <button class="pd-size-btn" data-size="XLL">XLL</button>
+                    </div>
+                </div>
+
+                <!-- Quantity + Add to Cart + Favorite -->
+                <div class="pd-actions">
+                    <div class="pd-qty-control">
+                        <button class="pd-qty-btn" id="pd-qty-minus">−</button>
+                        <span class="pd-qty-value" id="pd-qty">1</span>
+                        <button class="pd-qty-btn" id="pd-qty-plus">+</button>
+                    </div>
+                    <button class="pd-add-cart-btn" id="pd-add-cart">
+                        <i class="fa-solid fa-plus"></i> Add To Cart
+                    </button>
+                    <button class="pd-fav-btn" id="pd-fav-btn" title="Add to favorites">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+
+                <!-- Meta -->
+                <div class="pd-meta">
+                    <div class="pd-meta-row">
+                        <span class="pd-meta-label">SKU:</span>
+                        <span class="pd-meta-value" id="pd-sku">#DFH000</span>
+                    </div>
+                    <div class="pd-meta-row">
+                        <span class="pd-meta-label">TAGS:</span>
+                        <span class="pd-meta-value pd-tags" id="pd-tags">fashion, clothing</span>
+                    </div>
+                    <div class="pd-meta-row">
+                        <span class="pd-meta-label">SHARE:</span>
+                        <div class="pd-share-icons">
+                            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#" aria-label="Google+"><i class="fa-brands fa-google-plus-g"></i></a>
+                            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /pd-info -->
+        </div><!-- /pd-layout -->
+    </main>
+
+
+    <!-- ============================================================
+         PRODUCT TABS — Product Description | Reviews | Tags etc.
+         Content injected dynamically by product.js
+    ============================================================ -->
+    <section class="pd-tabs-section container-fluid">
+
+        <!-- Tab navigation -->
+        <nav class="pd-tabs-nav" id="pd-tabs-nav">
+            <button class="pd-tab-btn active" data-tab="description">Product Description</button>
+            <button class="pd-tab-btn" data-tab="reviews">Reviews</button>
+            <button class="pd-tab-btn" data-tab="tags">Tags</button>
+            <button class="pd-tab-btn" data-tab="additional">Additional Information</button>
+        </nav>
+
+        <div class="pd-tabs-border"></div>
+
+        <!-- Tab panels — filled by product.js -->
+        <div class="pd-tab-panel active" id="tab-description">
+            <!-- Injected by JS -->
+        </div>
+        <div class="pd-tab-panel" id="tab-reviews">
+            <!-- Injected by JS -->
+        </div>
+        <div class="pd-tab-panel" id="tab-tags">
+            <!-- Injected by JS -->
+        </div>
+        <div class="pd-tab-panel" id="tab-additional">
+            <!-- Injected by JS -->
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Shop</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Dresses</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Jackets</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Skirts</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Shoes &amp; Bags</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Information</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>About Us</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Contact Us</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Newsletter</h5>
+                    <p class="footer-text">Subscribe to get updates on new arrivals and special offers.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control footer-input" placeholder="Your email">
+                        <button class="btn footer-subscribe-btn" type="button"><i
+                                class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider mt-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <span class="footer-copyright">&copy; <span class="year">2025</span> D Fashion Hub. All rights
+                    reserved.</span>
+                <button class="btn btn-sm mt-2 mt-md-0 back-to-top"><i class="fa-solid fa-arrow-up ms-1"></i></button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./JS-file/product.js"></script>
+</body>
+
+</html>

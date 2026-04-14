@@ -22,7 +22,7 @@
 
 
     <!-- ========= LOGO ICON ========= -->
-    <link rel="shortcut icon" type="image/png" href="./assets/icons/logo2.JPG" />
+    <link rel="shortcut icon" type="image/png" href="./assets/icons/logo-icon.png" />
     <title>Checkout Form</title>
 </head>
 
@@ -31,7 +31,8 @@
     <header>
         <section class="header-section d-flex align-items-center justify-content-between px-3 py-3">
             <div class="header__logo">
-                <img src="./assets/icons/logo2.JPG" alt="D FASHION HUB LOGO" width="70px" height="auto" class="rounded">
+                <img src="./assets/icons/logo-icon.png" alt="D FASHION HUB LOGO" width="70px" height="auto"
+                    class="rounded">
             </div>
             <button class="hamburger-btn" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
@@ -39,7 +40,7 @@
             <nav class="header__nav align-items-center gap-4 flex-grow-1 ms-4">
                 <ul class="menu d-flex gap-3 list-unstyled mb-0">
                     <li><a href="./index.html" class="text-decoration-none">Home</a></li>
-                    <li><a href="#" class="text-decoration-none">Shop</a></li>
+                    <li><a href="shop.html" class="text-decoration-none">Shop</a></li>
                     <li><a href="#" class="text-decoration-none">About Us</a></li>
                     <li><a href="#" class="text-decoration-none">Contact</a></li>
                     <li><a href="#" class="text-decoration-none"><span>Sale!</span></a></li>
@@ -69,15 +70,11 @@
         </section>
     </header>
 
-    <!-- =========== whole body section ============ -->
-
-    <div class="home-login-checkout d-flex gap-3 ms-4 align-items-center flex-wrap">
-        <span><a href="./index.html" class="btn btn-sm btn-outline-secondary">View All <i
-                    class="fa-solid fa-angle-right"></i></a></span>
-        <span><a href="./login.html" class="btn btn-sm btn-outline-secondary">login <i
-                    class="fa-solid fa-arrow-right"></i></a></span>
-        <span class="checkout-span"><a href="./checkout.html"
-                class="btn btn-sm btn-primary checkout">Checkout</a></span>
+    <!-- BREADCRUMB -->
+    <div class="shop-breadcrumb">
+        <a href="./index.html">Home</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <span>checkout</span>
     </div>
 
     <h1 class="checkout-form mt-5 mb-4 text-center">Checkout and Cart Summary</h1>
@@ -160,6 +157,7 @@
                             <input class="qty-input" type="number" min="1" value="1" aria-live="polite" />
                             <button class="qty-btn" data-action="increase" aria-label="Increase quantity">+</button>
                         </div>
+                        <button class="remove-item btn btn-sm btn-outline-danger mt-2">Remove</button>
                     </div>
                     <div class="item-price">
                         <span>RON 229.99</span>
@@ -199,7 +197,8 @@
                         <div class="d-flex gap-2 mt-1">
                             <input type="text" id="promo-input" class="form-control form-control-sm"
                                 placeholder="Add promo code">
-                            <button type="button" id="apply-btn" class="btn btn-sm btn-outline-primary">Apply</button>
+                            <button type="button" onclick="validateAndNotify()"
+                                class="btn btn-sm btn-outline-primary">Apply</button>
                         </div>
                     </div>
 
@@ -212,7 +211,7 @@
 
 
     <!-- ============= CHECKOUT FORMS SECTION ============= -->
-    <section class="checkout__payment">
+    <section class="checkout__payment" id="checkout-payment">
         <h1>Payment Information</h1>
 
         <!-- ============= CHECKOUT FORM ============= -->

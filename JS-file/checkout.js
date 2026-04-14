@@ -1,6 +1,3 @@
-import { calculateVAT } from "./data.js";
-import { allProducts } from "./data.js";
-
 // ================= 1. GLOBAL letIABLES & CONSTANTS =====================
 
 // Product 1 constants
@@ -21,6 +18,8 @@ import { allProducts } from "./data.js";
 // Create an allProducts associative string with:
 // − the name, price and quantity of all the products in your e-commerce store (enough to
 // have up to 10 products)
+
+const VAT_RATE = 0.19; // 19% VAT always available in checkout
 
 // const allProducts = {
 //   "Jens Decathlons Jacket": {
@@ -157,6 +156,7 @@ function areIdsEqual(a, b) {
 function removeFromCart(productId) {
   let cart = getCart();
   cart = cart.filter((item) => !areIdsEqual(item.id, productId));
+
   saveCart(cart);
   renderCartItems();
   updateCartBadge();
@@ -175,10 +175,31 @@ function initQuantityControls() {
     input.addEventListener("change", handleQtyInputChange);
   });
 
+  function confirmAndRemove(productId) {
+    const product = allProducts[productId];
+    const productName = product ? product.name : "this item";
+
+    const userConfirmed = window.confirm(
+      `Are you sure you want to remove ${productName} from your cart?`,
+    );
+
+    if (userConfirmed) {
+      removeFromCart(productId);
+    } else {
+      alert(`${productName} was not removed from your cart.`);
+    }
+  }
+
   const removeButtons = document.querySelectorAll(".remove-item");
+
   removeButtons.forEach((btn) => {
-    btn.removeEventListener("click", handleRemoveItem);
-    btn.addEventListener("click", handleRemoveItem);
+    btn.onclick = function (e) {
+      const itemElem = e.currentTarget.closest(".items-one");
+      if (!itemElem) return;
+
+      const productId = itemElem.dataset.productId;
+      confirmAndRemove(productId);
+    };
   });
 }
 
@@ -208,14 +229,6 @@ function handleQtyInputChange(e) {
   }
   syncCartQuantities();
   calculateOrderSummary();
-}
-
-function handleRemoveItem(e) {
-  const itemElem = e.currentTarget.closest(".items-one");
-  if (!itemElem) return;
-  const productId =
-    itemElem.dataset.productId || itemElem.getAttribute("data-product-id");
-  removeFromCart(productId);
 }
 
 function syncCartQuantities() {
@@ -416,8 +429,25 @@ if (payBtn) {
 
 // Connect Proceed to Checkout button
 let checkoutBtn = document.getElementById("checkout-btn");
+
 if (checkoutBtn) {
-  checkoutBtn.addEventListener("click", function () {
-    validateCheckoutForm();
-  });
+  function confirmCheckout(e) {
+    e.preventDefault(); // important if inside form
+
+    const userConfirmed = window.confirm(
+      "You are about to proceed to checkout. Please confirm that you want to place your order.",
+    );
+
+    if (userConfirmed) {
+      const isValid = validateCheckoutForm();
+
+      if (isValid) {
+        window.location.hash = "#checkout-payment";
+      }
+    } else {
+      alert("You have canceled the checkout process.");
+    }
+  }
+
+  checkoutBtn.addEventListener("click", confirmCheckout);
 }

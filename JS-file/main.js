@@ -8,6 +8,7 @@ import { calculateVAT } from "./data.js";
 // =================================================================
 const CART_KEY = "dfashion_cart";
 const THEME_KEY = "dfashion_theme";
+const FAV_KEY = "dfashion_favorites";
 
 // =================================================================
 //  HAMBURGER MENU TOGGLE
@@ -70,26 +71,32 @@ checkboxes.forEach(function (checkbox) {
 });
 
 // =================================================================
-//  CART HELPERS  (localStorage-based, for the live browser UI)
-// =================================================================
+// ── Helpers ──────────────────────────────────────────────────────
 function getCart() {
   try {
-    const stored = localStorage.getItem(CART_KEY);
-    if (!stored) return [];
-    const parsed = JSON.parse(stored);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (error) {
-    console.error("Error reading cart from localStorage", error);
+    const d = localStorage.getItem(CART_KEY);
+    const p = d ? JSON.parse(d) : [];
+    return Array.isArray(p) ? p : [];
+  } catch {
     return [];
   }
 }
 
 function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function getFavorites() {
   try {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  } catch (error) {
-    console.error("Error saving cart to localStorage", error);
+    const d = localStorage.getItem(FAV_KEY);
+    return d ? JSON.parse(d) : [];
+  } catch {
+    return [];
   }
+}
+
+function saveFavorites(favs) {
+  localStorage.setItem(FAV_KEY, JSON.stringify(favs));
 }
 
 function updateCartBadge() {
@@ -147,17 +154,25 @@ const renderItems = function (items) {
   items.forEach(function (item, index) {
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("product-items");
-    const priceWithVAT = (  item.price + calculateVAT(item.price)).toFixed(2);
+    const priceWithVAT = (item.price * (1 + VAT_RATE)).toFixed(2);
     itemDiv.innerHTML =
+      '<a href="./product.html?id=' +
+      item.id +
+      '" class="pd-card-link">' +
       '<img class="product-img" src="' +
       item.image +
       '" alt="' +
       item.name +
       '">' +
+      "</a>" +
       '<div class="details">' +
+      '<a href="./product-details.html?id=' +
+      item.id +
+      '" class="pd-card-link">' +
       '<span class="product-name">' +
       item.name +
       "</span>" +
+      "</a>" +
       '<div class="price_favorite">' +
       '<span class="prices">RON ' +
       item.price.toFixed(2) +
@@ -180,12 +195,6 @@ const renderItems = function (items) {
       item.name +
       '">Add To Cart</button>';
     itemContainer.appendChild(itemDiv);
-  });
-
-  // apply star ratings
-  document.querySelectorAll(".star-rating").forEach(function (el) {
-    let rating = parseFloat(el.getAttribute("data-rating")) || 0;
-    el.style.setProperty("--rating", rating);
   });
 };
 
@@ -334,59 +343,148 @@ function calculateTotalStockValue() {
 calculateTotalStockValue();
 
 // =================================================================
-//  FILTER BY PRICE
+//  RENDER DISCOUNTED PRODUCTS
 // =================================================================
-function filterItemsByPrice(range) {
-  let filteredProducts = [];
-  if (range === "low") {
-    filteredProducts = allProducts.filter((p) => p.price < 300);
-  } else if (range === "medium") {
-    filteredProducts = allProducts.filter(
-      (p) => p.price >= 300 && p.price <= 1000,
-    );
-  } else if (range === "high") {
-    filteredProducts = allProducts.filter((p) => p.price > 1000);
-  } else {
-    filteredProducts = allProducts;
-  }
-  console.log(
-    "Filter '" + range + "': " + filteredProducts.length + " products found",
-  );
-  renderItems(filteredProducts);
-}
+function renderDiscountedProducts() {
+  const grid = document.getElementById("discount-grid");
+  if (!grid) return;
 
-const sortSelect = document.getElementById("sort-price");
-if (sortSelect) {
-  sortSelect.addEventListener("change", function () {
-    filterItemsByPrice(this.value);
+  // Filter products that have a discountPercent — read directly from allProducts
+  const discounted = allProducts.filter((p) => p.discountPercent);
+
+  if (discounted.length === 0) {
+    grid.innerHTML = "<p>No discounted products available right now.</p>";
+    return;
+  }
+
+  grid.innerHTML = "";
+
+  discounted.forEach((product) => {
+    const discountedPrice = (
+      product.price *
+      (1 - product.discountPercent / 100)
+    ).toFixed(2);
+    const savedAmount = (product.price - discountedPrice).toFixed(2);
+
+    // Card — built via DOM, no manual HTML
+    const card = document.createElement("div");
+    card.className = "dc-card";
+    card.setAttribute("data-id", product.id);
+
+    // Image wrap
+    const imgWrap = document.createElement("div");
+    imgWrap.className = "dc-img-wrap";
+
+    // Discount badge (RED)
+    const badge = document.createElement("span");
+    badge.className = "dc-badge";
+    badge.textContent = "-" + product.discountPercent + "%";
+    imgWrap.appendChild(badge);
+
+    // Image → clicks to product.html
+    const img = document.createElement("img");
+    img.className = "dc-img";
+    img.src = product.image;
+    img.alt = product.name;
+    img.addEventListener("click", function () {
+      window.location.href = "./product.html?id=" + product.id;
+    });
+    imgWrap.appendChild(img);
+
+    // Favourite button
+    const favBtn = document.createElement("button");
+    favBtn.className = "dc-fav";
+    favBtn.innerHTML = "<i class='fa-regular fa-heart'></i>";
+    favBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      let favs = getFavorites();
+      const exists = favs.some((f) => String(f.id) === String(product.id));
+      if (exists) {
+        favs = favs.filter((f) => String(f.id) !== String(product.id));
+        favBtn.innerHTML = "<i class='fa-regular fa-heart'></i>";
+      } else {
+        favs.push(product);
+        favBtn.innerHTML =
+          "<i class='fa-solid fa-heart' style='color:#ef4444'></i>";
+      }
+      saveFavorites(favs);
+      updateFavBadge();
+    });
+    imgWrap.appendChild(favBtn);
+
+    // Hover "Add to Cart" — hidden by default via CSS, shown on hover
+    const hoverCart = document.createElement("button");
+    hoverCart.className = "dc-hover-cart";
+    hoverCart.textContent = "Add To Cart";
+    hoverCart.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const cart = getCart();
+      const existing = cart.find((i) => String(i.id) === String(product.id));
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: parseFloat(discountedPrice),
+          image: product.image,
+          quantity: 1,
+          rating: product.rating,
+        });
+      }
+      saveCart(cart);
+      updateCartBadge();
+      alert(
+        product.name +
+          " added to cart at discounted price RON " +
+          discountedPrice +
+          "!",
+      );
+    });
+    imgWrap.appendChild(hoverCart);
+
+    card.appendChild(imgWrap);
+
+    // Info section
+    const info = document.createElement("div");
+    info.className = "dc-info";
+
+    const name = document.createElement("a");
+    name.href = "./product.html?id=" + product.id;
+    name.className = "dc-name";
+    name.textContent = product.name;
+    info.appendChild(name);
+
+    const priceRow = document.createElement("div");
+    priceRow.className = "dc-price-row";
+
+    const price = document.createElement("span");
+    price.className = "dc-price";
+    price.textContent = "RON " + discountedPrice;
+    priceRow.appendChild(price);
+
+    const orig = document.createElement("span");
+    orig.className = "dc-orig";
+    orig.textContent = "RON " + product.price.toFixed(2);
+    priceRow.appendChild(orig);
+
+    info.appendChild(priceRow);
+
+    // Saving text in RED
+    const saving = document.createElement("span");
+    saving.className = "dc-saving";
+    saving.textContent =
+      "Save RON " + savedAmount + " (" + product.discountPercent + "% off)";
+    info.appendChild(saving);
+
+    card.appendChild(info);
+    grid.appendChild(card);
+  });
+
+  document.querySelectorAll(".star-rating").forEach(function (el) {
+    let rating = parseFloat(el.getAttribute("data-rating")) || 0;
+    el.style.setProperty("--rating", rating);
   });
 }
 
-// =================================================================
-//  FILTER BY CATEGORY
-// =================================================================
-function filterItemsBySex(sex) {
-  let filteredProducts = [];
-  if (sex === "male") {
-    filteredProducts = allProducts.filter((p) => p.category === "Male");
-  } else if (sex === "female") {
-    filteredProducts = allProducts.filter((p) => p.category === "Female");
-  } else if (sex === "unisex") {
-    filteredProducts = allProducts.filter((p) => p.category === "Unisex");
-  } else {
-    filteredProducts = allProducts;
-  }
-  console.log(
-    "Filter '" + sex + "': " + filteredProducts.length + " products found",
-  );
-  renderItems(filteredProducts);
-}
-
-const selectCategories = document.getElementById("sort-categories");
-if (selectCategories) {
-  selectCategories.addEventListener("change", function () {
-    filterItemsBySex(this.value);
-  });
-}
-
-// star ratings are applied inside renderItems() above
+renderDiscountedProducts();

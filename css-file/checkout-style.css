@@ -143,6 +143,29 @@ input {
   font-weight: 600;
 }
 
+#apply-btn {
+  background-color: var(--color-secondary);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#apply-btn:hover {
+  background-color: #008ecc;
+}
+
+body.dark-mode #apply-btn {
+  background-color: var(--color-secondary) !important;
+  color: #fff !important;
+}
+
+body.dark-mode #apply-btn:hover {
+  background-color: #008ecc !important;
+}
+
 /* ================ ORDER SUMMARY BOX ================== */
 .order-summary {
   background-color: var(--color-light);
@@ -605,4 +628,18 @@ select {
   font-size: 1.1rem;
   color: var(--text-primary);
   white-space: nowrap;
+}
+
+.shop-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 40px;
+  font-size: 0.975rem;
+  color: #9ca3af;
+}
+
+.shop-breadcrumb a {
+  color: var(--color-secondary, #00ccdd);
+  text-decoration: none;
 }

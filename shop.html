@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e7ef4b81f7.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css-file/style.css">
+    <link rel="stylesheet" href="./css-file/shop.css">
+    <title>Shop – D Fashion Hub</title>
+    <link rel="shortcut icon" type="image/png" href="./assets/icons/logo-icon.png" />
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <section class="header-section d-flex align-items-center justify-content-between px-3 py-3">
+            <div class="header__logo">
+                <img src="./assets/icons/logo-icon.png" alt="D FASHION HUB LOGO" class="rounded">
+            </div>
+            <button class="hamburger-btn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="header__nav align-items-center gap-4 flex-grow-1 ms-4">
+                <ul class="menu d-flex gap-3 list-unstyled mb-0">
+                    <li><a href="./index.html" class="text-decoration-none">Home</a></li>
+                    <li><a href="" class="text-decoration-none">Shop</a></li>
+                    <li><a href="#" class="text-decoration-none">About Us</a></li>
+                    <li><a href="#" class="text-decoration-none">Contact</a></li>
+                    <li><a href="#" class="text-decoration-none"><span>Sale!</span></a></li>
+                </ul>
+
+                <form class="search-bar ms-auto" id="search-form">
+                    <label for="search-input"></label><input type="text" placeholder="Search products..."
+                        class="form-control form-control-sm search" id="search-input" />
+                </form>
+
+                <ul class="header__nav--icons d-flex gap-3 list-unstyled mb-0">
+                    <li>
+                        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                            <i id="theme-icon" class="fa-solid fa-moon"></i>
+                        </button>
+                    </li>
+                    <li><a href="./checkout.html" class="trolley-a position-relative"><i
+                                class="fa-solid fa-cart-arrow-down fs-5"></i><span class="cart-badge badge bg-danger"
+                                style="position: absolute; top: -5px; right: -8px; color: white;">0</span></a>
+                    </li>
+                    <li><a href="./login.html" class="text-decoration-none"><i
+                                class="fa-regular fa-circle-user fs-5"></i></a></li>
+                    <li>
+                        <a href="./favorites.html" class="text-decoration-none position-relative">
+                            <i class="fa-solid fa-heart fs-5"></i>
+                            <span class="fav-badge badge bg-danger cart-badge"
+                                style="position: absolute; top: -5px; right: -8px; color: white;">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="shop-breadcrumb">
+        <a href="./index.html">Home</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <span>Shop</span>
+    </div>
+
+    <!-- MAIN -->
+    <main class="shop-main">
+        <h1 class="shop-title">View All Products</h1>
+
+        <!-- Variant panel (shown when a product is selected) -->
+        <div class="shop-variant-panel" id="variant-panel" style="display:none;">
+            <h3 id="variant-product-name"></h3>
+            <div class="shop-variant-section">
+                <span class="shop-variant-label">SELECT COLOR</span>
+                <div class="shop-color-options" id="color-options"></div>
+            </div>
+            <div class="shop-variant-section">
+                <span class="shop-variant-label">SELECT SIZE</span>
+                <div class="shop-size-options" id="size-options"></div>
+            </div>
+            <button class="shop-confirm-btn" id="variant-confirm-btn">Confirm &amp; Add To Cart</button>
+        </div>
+
+        <!-- Product grid — populated entirely by shop.js via DOM -->
+        <section class="grid_aside-main">
+            <div class="section-aside">
+                <aside class="col-lg-3 col-md-4">
+
+                    <h3 class="filter">Filters</h3>
+                    <div class="price1">
+                        <label for="sort-price"></label><select id="sort-price" class="form-select form-select-sm"
+                            style="width: auto;">
+                            <option value="all">All Prices</option>
+                            <option value="low">Under 300</option>
+                            <option value="medium">300 - 1000</option>
+                            <option value="high">Over 1000</option>
+                        </select>
+                    </div>
+
+                    <div class="categories">
+                        <label for="sort-categories">Categories</label><select id="sort-categories"
+                            class="form-select form-select-sm" style="width: auto;">
+                            <option value="all-product">All Product</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="unisex">Unisex</option>
+                        </select>
+                    </div>
+                    <div class="brands">
+                        <div class="price1">
+                            <span>Brand</span>
+                        </div>
+                        <div class="zara">
+                            <div class="input">
+                                <input type="checkbox">
+                            </div><span>ZARA</span>
+                        </div>
+                        <div class="zara">
+                            <div class="input">
+                                <input type="checkbox">
+                            </div><span>H&M</span>
+                        </div>
+                        <div class="zara">
+                            <div class="input">
+                                <input type="checkbox">
+                            </div><span>BERSKHA</span>
+                        </div>
+                        <div class="zara">
+                            <div class="input">
+                                <input type="checkbox">
+                            </div><span>KOTON</span>
+                        </div>
+                    </div>
+
+                    <div class="brands">
+                        <div class="price1">
+                            <span>Categories</span>
+                        </div>
+                        <div class="zara">
+                            <div class="input">
+                                <input type="checkbox">
+                            </div><span>Pants</span>
+                        </div>
+                        <div class="zara">
+                            <div class="input">
+                                <input type="checkbox">
+                            </div><span>T-shirts</span>
+                        </div>
+                        <div class="zara">
+                            <div class="input">
+                                <input type="checkbox">
+                            </div><span>Jackets</span>
+                        </div>
+                        <div class="zara">
+                            <div class="input">
+                                <input type="checkbox">
+                            </div><span>Skirts</span>
+                        </div>
+                        <div class="zara">
+                            <div class="input">
+                                <input type="checkbox">
+                            </div><span>All Items</span>
+                        </div>
+                    </div>
+
+                </aside>
+
+                <button class="apply-btn">Apply Filter</button>
+            </div>
+            <div class="shop-grid" id="shop-grid"></div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Shop</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Dresses</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Jackets</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Shoes &amp; Bags</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Information</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>About Us</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>Contact Us</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link"><i
+                                    class="fa-solid fa-angle-right me-2"></i>FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading fw-bold mb-3 text-uppercase">Newsletter</h5>
+                    <p class="footer-text">Subscribe to get updates on new arrivals.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control footer-input" placeholder="Your email">
+                        <button class="btn footer-subscribe-btn" type="button"><i
+                                class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider mt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="footer-copyright">&copy; <span class="year"></span> D Fashion Hub. All rights
+                    reserved.</span>
+                <button class="btn btn-sm back-to-top"><i class="fa-solid fa-arrow-up ms-1"></i></button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./JS-file/shop.js"></script>
+</body>
+
+</html>

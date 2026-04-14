@@ -2,7 +2,11 @@
    FAVORITES PAGE STYLES
 ================================================================= */
 
-/* Full-width grid on favorites page — no sidebar so use full width */
+.all_favorites {
+  margin: auto 0 !important;
+  text-align: center;
+}
+
 .favorites-section {
   width: 95%;
   margin: 0 auto;
