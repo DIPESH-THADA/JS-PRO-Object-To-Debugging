@@ -1,72 +1,5 @@
-// ================= 1. GLOBAL letIABLES & CONSTANTS =====================
-
-// Product 1 constants
-// const PRODUCT1_NAME = "Jens Decathlons Jacket";
-// const PRODUCT1_PRICE = 149.99; // number (in RON)
-// const PRODUCT1_QTY = 1;
-
-// // Product 2 constants
-// const PRODUCT2_NAME = "Ladies Casual Coat";
-// const PRODUCT2_PRICE = 129.99; // number (in RON)
-// const PRODUCT2_QTY = 1;
-
-// // Product 3 constants
-// const PRODUCT3_NAME = "Mens Suede Shoe";
-// const PRODUCT3_PRICE = 229.99; // number (in RON)
-// const PRODUCT3_QTY = 1;
-
-// Create an allProducts associative string with:
-// − the name, price and quantity of all the products in your e-commerce store (enough to
-// have up to 10 products)
-
-const VAT_RATE = 0.19; // 19% VAT always available in checkout
-
-// const allProducts = {
-//   "Jens Decathlons Jacket": {
-//     price: 149.99,
-//     quantity: 7,
-//   },
-//   "Ladies Casual Coat": {
-//     price: 129.99,
-//     quantity: 3,
-//   },
-//   "Mens Suede Shoe": {
-//     price: 229.99,
-//     quantity: 6,
-//   },
-//   "Karl Lagerfeld Sneaker": {
-//     price: 199.99,
-//     quantity: 4,
-//   },
-//   "Adidas Running Shoe": {
-//     price: 89.99,
-//     quantity: 10,
-//   },
-//   "Nike Air Max": {
-//     price: 119.99,
-//     quantity: 8,
-//   },
-//   "Puma Sports Shoe": {
-//     price: 79.99,
-//     quantity: 12,
-//   },
-//   "Reebok Classic": {
-//     price: 99.99,
-//     quantity: 15,
-//   },
-//   "Converse All Star": {
-//     price: 59.99,
-//     quantity: 4,
-//   },
-//   "Vans Old Skool": {
-//     price: 69.99,
-//     quantity: 9,
-//   },
-//   "Ladies Casual Coat": {
-//     price: 129.99,
-//     quantity: 10,
-//   },
-// };
+import { calculateVAT } from "./data.js";
+import { allProducts } from "./data.js";
 
 const CART_KEY = "dfashion_cart";
 
@@ -113,15 +46,23 @@ function renderCartItems() {
 
   cartArea.innerHTML = cart
     .map((item) => {
-      const itemTotal = (item.price * (item.quantity || 1)).toFixed(2);
+      const qty = item.quantity || 1;
+      const unitPrice = Number(item.price);
+      const vatPrice = (unitPrice * 1.15).toFixed(2);
+      const itemTotal = (unitPrice * qty).toFixed(2);
+      // Show original price if item was added at discounted price
+      const origPrice = item.originalPrice ? Number(item.originalPrice).toFixed(2) : null;
+      const priceDisplay = origPrice
+        ? `<span class="cart-orig-price">RON ${origPrice}</span> <span class="cart-disc-price">RON ${unitPrice.toFixed(2)}</span> <small>(incl. VAT: RON ${vatPrice})</small>`
+        : `RON ${unitPrice.toFixed(2)} <small>(incl. VAT: RON ${vatPrice})</small>`;
       return `
       <div class="items-one" data-product-id="${item.id}">
         <img src="${item.image || "./assets/images/default-product.png"}" alt="${item.name}" width="80" height="auto">
         <div class="item-details">
           <table>
             <tr><td class="product-name">${item.name}</td></tr>
-            <tr><td>Quantity: <span class="display-qty">${item.quantity || 1}</span></td></tr>
-            <tr><td>Price: RON ${Number(item.price).toFixed(2)}</td></tr>
+            <tr><td>Quantity: <span class="display-qty">${qty}</span></td></tr>
+            <tr><td>Price: ${priceDisplay}</td></tr>
           </table>
           <div class="qty-control_remove">
           <div class="qty-control" role="group" aria-label="Quantity">
@@ -156,7 +97,6 @@ function areIdsEqual(a, b) {
 function removeFromCart(productId) {
   let cart = getCart();
   cart = cart.filter((item) => !areIdsEqual(item.id, productId));
-
   saveCart(cart);
   renderCartItems();
   updateCartBadge();
@@ -175,31 +115,10 @@ function initQuantityControls() {
     input.addEventListener("change", handleQtyInputChange);
   });
 
-  function confirmAndRemove(productId) {
-    const product = allProducts[productId];
-    const productName = product ? product.name : "this item";
-
-    const userConfirmed = window.confirm(
-      `Are you sure you want to remove ${productName} from your cart?`,
-    );
-
-    if (userConfirmed) {
-      removeFromCart(productId);
-    } else {
-      alert(`${productName} was not removed from your cart.`);
-    }
-  }
-
   const removeButtons = document.querySelectorAll(".remove-item");
-
   removeButtons.forEach((btn) => {
-    btn.onclick = function (e) {
-      const itemElem = e.currentTarget.closest(".items-one");
-      if (!itemElem) return;
-
-      const productId = itemElem.dataset.productId;
-      confirmAndRemove(productId);
-    };
+    btn.removeEventListener("click", handleRemoveItem);
+    btn.addEventListener("click", handleRemoveItem);
   });
 }
 
@@ -229,6 +148,14 @@ function handleQtyInputChange(e) {
   }
   syncCartQuantities();
   calculateOrderSummary();
+}
+
+function handleRemoveItem(e) {
+  const itemElem = e.currentTarget.closest(".items-one");
+  if (!itemElem) return;
+  const productId =
+    itemElem.dataset.productId || itemElem.getAttribute("data-product-id");
+  removeFromCart(productId);
 }
 
 function syncCartQuantities() {
@@ -429,25 +356,8 @@ if (payBtn) {
 
 // Connect Proceed to Checkout button
 let checkoutBtn = document.getElementById("checkout-btn");
-
 if (checkoutBtn) {
-  function confirmCheckout(e) {
-    e.preventDefault(); // important if inside form
-
-    const userConfirmed = window.confirm(
-      "You are about to proceed to checkout. Please confirm that you want to place your order.",
-    );
-
-    if (userConfirmed) {
-      const isValid = validateCheckoutForm();
-
-      if (isValid) {
-        window.location.hash = "#checkout-payment";
-      }
-    } else {
-      alert("You have canceled the checkout process.");
-    }
-  }
-
-  checkoutBtn.addEventListener("click", confirmCheckout);
+  checkoutBtn.addEventListener("click", function () {
+    validateCheckoutForm();
+  });
 }

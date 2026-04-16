@@ -1,9 +1,13 @@
-body.dark-mode .order-summary-container h5 {
-  color: var(--color-text-muted);
-}
+body.dark-mode .order-summary-container h5,
 body.dark-mode strong {
   color: var(--color-text-muted);
 }
+
+body.dark-mode .qty-control .qty-btn,
+input {
+  color: var(--color-light);
+}
+
 /* ========== CHECKOUT PAGE STYLES ========== */
 
 input {
@@ -642,4 +646,22 @@ select {
 .shop-breadcrumb a {
   color: var(--color-secondary, #00ccdd);
   text-decoration: none;
+}
+
+/* ── Cart item discounted price display (matches shop.html) ── */
+.cart-orig-price {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-size: 0.85rem;
+  margin-right: 4px;
+}
+.cart-disc-price {
+  color: #ef4444;
+  font-weight: 700;
+}
+.item-details table td small {
+  color: var(--color-accent, #d33519);
+  font-size: 0.82rem;
+  display: block;
+  margin-top: 2px;
 }

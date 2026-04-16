@@ -391,15 +391,25 @@ function initVariantConfirm() {
 }
 
 // ── Back to top / year ───────────────────────────────────────────
-function initUtils() {
-  const btn = document.querySelector(".back-to-top");
-  if (btn)
-    btn.addEventListener("click", () =>
-      window.scrollTo({ top: 0, behavior: "smooth" }),
-    );
-  const yr = document.querySelector(".year");
-  if (yr) yr.textContent = new Date().getFullYear();
-}
+const scrollBtn = document.querySelector(".back-to-top");
+const backToTop = () => {
+  if (window.scrollY > 400) {
+    scrollBtn.style.visibility = "visible";
+  } else {
+    scrollBtn.style.visibility = "hidden";
+  }
+};
+document.addEventListener("scroll", () => {
+  backToTop();
+});
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+const yr = document.querySelector(".year");
+if (yr) yr.textContent = new Date().getFullYear();
 
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
@@ -410,5 +420,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initPriceFilter();
   initCategoryFilter();
   initVariantConfirm();
-  initUtils();
+  backToTop();
 });

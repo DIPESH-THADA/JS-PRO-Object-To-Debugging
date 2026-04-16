@@ -1,0 +1,267 @@
+/* =================================================================
+   FAVORITES PAGE STYLES
+================================================================= */
+
+.all_favorites {
+  margin: auto 0 !important;
+  text-align: center;
+}
+
+.favorites-section {
+  width: 95%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* fav-actions sits below the card content */
+.fav-item .fav-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+  margin-top: 5px;
+}
+
+.fav-item .fav-actions .cart-btn,
+.fav-item .fav-actions .remove-fav {
+  width: 100%;
+}
+
+/* Empty state */
+.empty-favorites {
+  width: 100%;
+  padding: 60px 20px;
+}
+
+.remove-fav {
+  background-color: #fff;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.fav-badge {
+  background-color: var(--color-accent);
+  color: #fff;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+}
+
+.badge-text {
+  font-size: 1.075rem;
+}
+
+/* Tablet: 3 columns */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+}
+
+/* Small tablet / large mobile: 2 columns */
+@media screen and (max-width: 767px) {
+  .favorites-section {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/* Mobile: 1 column */
+@media screen and (max-width: 480px) {
+}
+
+/* =================================================================
+   FAVORITES — Shop card style integration
+   These match the shop.html card styles so fav cards look identical
+================================================================= */
+
+/* Fav grid inherits shop-card sizing */
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+/* Card base — mirrors .shop-card */
+.fav-item.shop-card {
+  background: var(--color-light, #fff);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.fav-item.shop-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+}
+
+/* Image wrap */
+.fav-item .shop-card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: #f3f4f6;
+}
+.fav-item .shop-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s;
+}
+.fav-item.shop-card:hover .shop-card-img {
+  transform: scale(1.05);
+}
+
+/* Discount badge */
+.fav-item .shop-discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+/* Hover "Add To Cart" — HIDDEN by default, slides up on hover */
+.fav-item .shop-hover-cart-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: var(--color-secondary, #00ccdd);
+  color: #fff;
+  border: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(100%);
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
+  z-index: 3;
+}
+.fav-item.shop-card:hover .shop-hover-cart-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Info section */
+.fav-item .shop-card-info {
+  padding: 12px 14px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Star row */
+.fav-item .shop-card-stars-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.fav-item .shop-review-count {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Price row */
+.fav-item .price_favorite {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.fav-item .shop-orig-price {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+.fav-item .shop-disc-price {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+/* Action buttons below card */
+.fav-item .fav-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 14px 14px;
+}
+.fav-item .fav-actions .cart-btn {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: var(--color-secondary, #00ccdd);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.fav-item .fav-actions .cart-btn:hover {
+  background-color: #0099bb;
+}
+.fav-item .fav-actions .remove-fav {
+  width: 100%;
+  padding: 8px 15px;
+  background: transparent;
+  color: var(--color-accent, #d33519);
+  border: 1px solid var(--color-accent, #d33519);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.fav-item .fav-actions .remove-fav:hover {
+  background: var(--color-accent, #d33519);
+  color: #fff;
+}
+
+/* Dark mode */
+body.dark-mode .fav-item.shop-card {
+  background: var(--color-surface-dark, #1a1d21);
+}
+body.dark-mode .fav-item .shop-card-img-wrap {
+  background: #111827;
+}
+
+/* Responsive */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .fav-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 767px) {
+  .fav-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .favorites-section {
+    width: 100%;
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .fav-grid {
+    grid-template-columns: 1fr;
+  }
+}

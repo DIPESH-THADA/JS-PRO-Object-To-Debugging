@@ -34,13 +34,23 @@ if (hamburgerBtn && headerNav) {
 // =================================================================
 //  BACK TO TOP
 // =================================================================
-const backToTopBtn = document.querySelector(".back-to-top");
-if (backToTopBtn) {
-  backToTopBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+const scrollBtn = document.querySelector(".back-to-top");
+const backToTop = () => {
+  if (window.scrollY > 400) {
+    scrollBtn.style.visibility = "visible";
+  } else {
+    scrollBtn.style.visibility = "hidden";
+  }
+};
+document.addEventListener("scroll", () => {
+  backToTop();
+});
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
   });
-}
+});
 
 // =================================================================
 //  CURRENT YEAR

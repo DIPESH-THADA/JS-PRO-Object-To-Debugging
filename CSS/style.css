@@ -36,6 +36,13 @@ body.dark-mode .footer-link {
   color: var(--color-text-dark);
 }
 
+body.dark-mode .best-sale-title h1 {
+  color: var(--color-accent);
+}
+body.dark-mode .best-sale-title p {
+  color: var(--color-secondary);
+}
+
 body.dark-mode .header-section,
 body.dark-mode .site-footer,
 body.dark-mode .order-summary,
@@ -68,6 +75,10 @@ body.dark-mode .product-items span:not(.star-rating) {
   color: var(--color-text-muted-dark);
 }
 
+body.dark-mode .discount-title {
+  color: var(--color-accent) !important;
+}
+
 body.dark-mode .header__nav,
 body.dark-mode .search-bar input,
 body.dark-mode .btn,
@@ -84,6 +95,10 @@ body.dark-mode .cart-badge {
 
 body.dark-mode .site-footer span {
   color: var(--color-text-muted-dark) !important;
+}
+
+body.dark-mode .header__nav .search-bar input {
+  color: var(--color-secondary) !important;
 }
 
 .theme-toggle-btn {
@@ -823,6 +838,7 @@ nav .header__nav--icons ul {
   z-index: 1000;
   display: flex;
   align-items: center;
+  visibility: hidden;
 }
 
 .back-to-top:hover {
@@ -971,6 +987,7 @@ nav .header__nav--icons ul {
 
   .best-sale-title h1 {
     font-size: 2rem;
+    color: var(--color-accent) !important;
   }
 
   .best-sale-title p {
@@ -1395,7 +1412,7 @@ nav .header__nav--icons ul {
 .discount-title {
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--text-primary, #222831);
+  color: var(--color-accent);
 }
 
 .discount-subtitle {
